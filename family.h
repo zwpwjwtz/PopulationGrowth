@@ -22,7 +22,8 @@ public:
 private:
     int population; //Total population of the family
     bool father, mother;    //Indicate the existence of parents
-    bool* children; //Childrens' sex in bool    
+    bool* children; //Childrens' sex in bool; here 'true'='male', 'false'='female'
+    int childrenCount;  //Population of children
     int lastGrownUp;    //a pointer indicating the last child that have already grown up
 };
 

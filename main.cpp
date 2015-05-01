@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-    //Simulator world;
-    //world.start();
+    Simulator world;
+    world.start();
     return 0;
 }
