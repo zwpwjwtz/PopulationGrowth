@@ -1,8 +1,10 @@
-class group
+#ifndef GROUP_H_
+#define GROUP_H_
+class Group
 {
 public:
-    group();
-    ~group();
+    Group();
+    ~Group();
     
     int male, female;   //Population of male and female
     
@@ -10,3 +12,4 @@ public:
     void addPerson(bool isMale);
     void removePerson(bool isMale);
 };
+#endif

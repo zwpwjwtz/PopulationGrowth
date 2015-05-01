@@ -1,19 +1,22 @@
+#ifndef FAMILY_H_
+#define FAMILY_H_
+
 #include "group.h"
 
-class family
+class Family
 {
 public:
     static const int MAX_CHILD=6;
     
-    family();
-    ~family();
+    Family();
+    ~Family();
     
     void show_state();
     int getPopulation();
-    group* getGroup();
+    Group* getGroup();
     
     bool bear(bool isMale);
-    group* growUp();
+    Group* growUp();
     void dead(bool isMale, bool isParent);
     
 private:
@@ -22,3 +25,5 @@ private:
     bool* children; //Childrens' sex in bool    
     int lastGrownUp;    //a pointer indicating the last child that have already grown up
 };
+
+#endif
