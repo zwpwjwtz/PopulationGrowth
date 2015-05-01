@@ -6,6 +6,6 @@ using namespace std;
 int main()
 {
     Simulator world;
-    world.start();
+    world.start(100);
     return 0;
 }

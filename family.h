@@ -13,6 +13,7 @@ public:
     
     void show_state();
     int getPopulation();
+    int countChildren();
     Group* getGroup();
     
     bool bear(bool isMale);

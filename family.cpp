@@ -28,6 +28,11 @@ int Family::getPopulation()
     return population;
 }
 
+int Family::countChildren()
+{
+    return childrenCount;
+}
+
 Group* Family::getGroup()
 {
     Group* tempGroup=new Group;
