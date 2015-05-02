@@ -36,11 +36,12 @@ void Simulator::start(int generation)
     */
     for (int i=1; i<=generation; i++)
     {
-        marriage();
-        birth();
-        growUp();
         death();
+        growUp();
+        birth();
+        marriage();
         output(i);
+        sleep(1);   //Slow down stimulation in order to make random number more "randomly"
     }    
 }
 

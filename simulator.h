@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <unistd.h>
 #include <time.h>
 #include "group.h"
 #include "family.h"
