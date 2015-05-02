@@ -46,26 +46,27 @@ void Simulator::start(int generation)
 
 void Simulator::createFamily()
 {
+    if (familyCount>=MAX_FAMILY) return;
     Family* tempFamily;
     tempFamily=new Family();
-    for(int i=familyCount+1; i!=familyCount; i=(i+1) % MAX_FAMILY) //Try to find an available index
-    {
-        if (families[i]==NULL)
-        {
-            families[i]=tempFamily;
-            familyCount++;
-            break;
-        }
-    }
+    families[familyCount++]=tempFamily;   //Append the new family to the famillies array
 }
 void Simulator::removeFamily(Family* family)
 {
-    for(int i=0;i<MAX_FAMILY;i++)
+    for(int i=0;i<familyCount;i++)
     {
         if (families[i]==family)
         {
-            families[i]=NULL;
-            familyCount--;
+            delete families[i];
+            if (familyCount>0)
+            {
+                families[i]=families[--familyCount];  //Replace this family with the family at the end of array
+                families[familyCount]=NULL;
+            }
+            else
+            {
+                families[i]=NULL;
+            }
             break;
         }
     }
@@ -93,12 +94,11 @@ void Simulator::birth()
     srand((unsigned)time(NULL));    //Set random seed
     int n;
     int i,j;
-    for (i=0; i<MAX_FAMILY; i++)
+    for (i=0; i<familyCount; i++)
     {
-        if (!families[i]) continue;
         if (rand()<natureBirth)
         {
-            n = float(natureBirthPerson) * rand() / RAND_MAX;   //How many children one would get
+            n = natureBirthPerson * rand() ;   //How many children one would get
             for (j=0;j<n;j++)
             {
                 families[i]->bear(rand() < natureManBirth); //Get a boy or girl
@@ -110,11 +110,10 @@ void Simulator::birth()
 void Simulator::growUp()
 {
     Group* tempGroup;
-    for (int i=0; i<MAX_FAMILY; i++)
+    for (int i=0; i<familyCount; i++)
     {
-        if (!families[i]) continue;
-        tempGroup=families[i]->growUp();
-        if (tempGroup)  //The grown-ups from family come into the group of freep people
+        tempGroup=families[i]->growUp();        
+        if (tempGroup)  //The grown-ups from family come into the group of free people
         {
             freePeople->male += tempGroup->male;
             freePeople->female += tempGroup->female;
@@ -128,9 +127,8 @@ void Simulator::death()
     srand((unsigned)time(NULL));    //Set random seed
     int n;
     int i,j;
-    for (i=0; i<MAX_FAMILY; i++)
+    for (i=0; i<familyCount; i++)
     {
-        if (!families[i]) continue;
         if (rand() < natureParentsDeath)    //One of the parent will die
         {
             families[i]->dead(rand() < natureManDeath, true);   //Father or mother die              
@@ -164,9 +162,9 @@ int Simulator::countFamily()
 int Simulator::countTotalPerson()
 {
     int count = 0;
-    for (int i=0;i<MAX_FAMILY;i++)
+    for (int i=0;i<familyCount;i++)
     {
-        if (families[i])    count+=families[i]->getPopulation();
+        count+=families[i]->getPopulation();
     }
     return count;
 }
@@ -179,5 +177,5 @@ int Simulator::countFreePeople()
 void Simulator::output(int generation)    //Print the current status
 {
     if (generation==1)   cout<< "Gener." << "\tTotal" << "\tFamily" << "\t Free" << endl;
-    cout << generation << "\t" << countTotalPerson() << "\t" << familyCount << "\t " << freePeople->male + freePeople->female << endl;
+    cout << generation << "\t" << countTotalPerson() << "\t" << countFamily() << "\t " << countFreePeople() << endl;
 }

@@ -95,6 +95,7 @@ void Family::dead(bool isMale, bool isParent)
                     {
                         children[j]=children[j+1];
                     }
+                    if (i<=lastGrownUp && i>0) lastGrownUp--;   //Adjust pointer lastGrownUp
                     childrenCount--;
                     population--;
                     break;

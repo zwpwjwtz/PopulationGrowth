@@ -15,7 +15,6 @@ public:
     ~Simulator();
     
     static const int MAX_FAMILY=1000000;
-    static const int natureBirthPerson = 6; //Max children one could get in one generation
     
     //Below are the possibility of certain events in one generation(e.g. ~30 years)
     //So long as we use rand() to generate random number, we will get an integer
@@ -26,6 +25,9 @@ public:
     static const int natureDeath = 0.7 * RAND_MAX; //Possibility of death
     static const int natureManDeath = 0.5 * RAND_MAX;  //Possibility of death of men(e.g. the person who dies is a man)
     static const int natureParentsDeath = 0.4 * RAND_MAX;  //Possibility of death of a parent
+    
+    static const float natureBirthPerson = 6.0f / RAND_MAX; //Max children one could get in one generation
+    
     
     static const int initalFreeMale  = 5000;
     static const int initalFreeFemale  = 5000;
