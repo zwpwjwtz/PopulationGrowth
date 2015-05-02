@@ -44,6 +44,7 @@ public:
 private:
     Group* freePeople;  //People who have grown up but have not been married yet
     Family** families;   //Pointer that points to the address array of familes
+    int* familyStage;   //Array of integers that indicates current states of families
     int familyCount;
     
     void createFamily();

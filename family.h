@@ -14,7 +14,7 @@ public:
     void show_state();
     int getPopulation(bool includeGrownUp=false);
     int countChildren(bool total=false);
-    Group* getGroup();
+    Group* getGroup(bool includeGrownUp=false);
     
     bool bear(bool isMale);
     Group* growUp();

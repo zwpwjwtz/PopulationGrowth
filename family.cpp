@@ -40,14 +40,22 @@ int Family::countChildren(bool total)
         return childrenCount;
 }
 
-Group* Family::getGroup()
+Group* Family::getGroup(bool includeGrownUp)
 {
     Group* tempGroup=new Group;
     if (childrenCount>0)
+    {
+        if (includeGrownUp)
         for (int i=0;i<childrenCount;i++)
         {
             tempGroup->addPerson(children[i]);
         }
+        else
+        for (int i=lastGrownUp;i<childrenCount;i++)
+        {
+            tempGroup->addPerson(children[i]);
+        }
+    }
     if (father) tempGroup->addPerson(true);
     if (mother) tempGroup->addPerson(false);
     return tempGroup;
@@ -94,7 +102,7 @@ void Family::dead(bool isMale, bool isParent)
     {
         if (childrenCount>0)
         {
-            for (int i=0;i<childrenCount;i++)
+            for (int i=lastGrownUp;i<childrenCount;i++) //Exclude children who have already grown up
             {
                 if (children[i]==isMale)
                 {                    
