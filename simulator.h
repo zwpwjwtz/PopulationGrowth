@@ -20,13 +20,13 @@ public:
     //So long as we use rand() to generate random number, we will get an integer
     //ranged from 0 to RAND_MAX, so here we multiply each possibility by RAND_MAX.
     static const int natureMarriage = 0.9 * RAND_MAX;  //Possibility of getting married
-    static const int natureBirth = 0.2 * RAND_MAX; //Possibility of having birth  
+    static const int natureBirth = 0.9 * RAND_MAX; //Possibility of having birth  
     static const int natureManBirth = 0.5 * RAND_MAX;  //Possibility of birth of men(e.g. the person born is a man)
-    static const int natureDeath = 0.7 * RAND_MAX; //Possibility of death
+    static const int natureDeath = 0.2 * RAND_MAX; //Possibility of death of unmarried male/female
     static const int natureManDeath = 0.5 * RAND_MAX;  //Possibility of death of men(e.g. the person who dies is a man)
     static const int natureParentsDeath = 0.4 * RAND_MAX;  //Possibility of death of a parent
     
-    static const float natureBirthPerson = 6.0f / RAND_MAX; //Max children one could get in one generation
+    static const float natureBirthPerson = 2.0f / RAND_MAX; //Max children one could get in one generation
     
     
     static const int initalFreeMale  = 5000;
