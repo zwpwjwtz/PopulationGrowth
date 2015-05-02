@@ -27,8 +27,8 @@ public:
     static const int natureManDeath = 0.5 * RAND_MAX;  //Possibility of death of men(e.g. the person who dies is a man)
     static const int natureParentsDeath = 0.4 * RAND_MAX;  //Possibility of death of a parent
     
-    static const int initalFreeMale  = 50;
-    static const int initalFreeFemale  = 50;
+    static const int initalFreeMale  = 5000;
+    static const int initalFreeFemale  = 5000;
     
     void start(int generation);
     int countFamily();

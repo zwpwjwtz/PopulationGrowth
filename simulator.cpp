@@ -118,6 +118,7 @@ void Simulator::growUp()
         {
             freePeople->male += tempGroup->male;
             freePeople->female += tempGroup->female;
+            delete tempGroup;
         }
     }
 }
@@ -162,7 +163,7 @@ int Simulator::countFamily()
 
 int Simulator::countTotalPerson()
 {
-    int count = freePeople->male + freePeople->female;
+    int count = 0;
     for (int i=0;i<MAX_FAMILY;i++)
     {
         if (families[i])    count+=families[i]->getPopulation();
