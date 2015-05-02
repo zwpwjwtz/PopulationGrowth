@@ -22,6 +22,12 @@ void Group::addPerson(bool isMale)
 
 void Group::removePerson(bool isMale)
 {
-    if (isMale && male>0) male--;
-    else if (female>0) female--;
+    if (isMale)
+    {
+        if (male>0) male--;
+    }
+    else
+    {
+        if (female>0) female--;
+    }
 }
