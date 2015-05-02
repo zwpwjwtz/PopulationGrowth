@@ -13,7 +13,7 @@ public:
     
     void show_state();
     int getPopulation(bool includeGrownUp=false);
-    int countChildren();
+    int countChildren(bool total=false);
     Group* getGroup();
     
     bool bear(bool isMale);
@@ -26,6 +26,7 @@ private:
     bool* children; //Childrens' sex in bool; here 'true'='male', 'false'='female'
     int childrenCount;  //Population of children
     int lastGrownUp;    //a pointer indicating the last child that have already grown up
+    int totalChildren;
 };
 
 #endif

@@ -11,6 +11,7 @@ Family::Family()
     children=new bool[MAX_CHILD];
     childrenCount=0;
     lastGrownUp=0;
+    totalChildren=0;
 }
 
 Family::~Family()
@@ -31,9 +32,12 @@ int Family::getPopulation(bool includeGrownUp)
         return population - lastGrownUp;
 }
 
-int Family::countChildren()
+int Family::countChildren(bool total)
 {
-    return childrenCount;
+    if (total)
+        return totalChildren;
+    else
+        return childrenCount;
 }
 
 Group* Family::getGroup()
@@ -54,8 +58,8 @@ bool Family::bear(bool isMale)
     if (!(father && mother)) return false;
     if (childrenCount >= MAX_CHILD) return false;
     population++;
-    children[childrenCount]=isMale;
-    childrenCount++;   
+    children[childrenCount++]=isMale;
+    totalChildren++;
     return true;
 }
 

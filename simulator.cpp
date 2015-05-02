@@ -191,18 +191,13 @@ float Simulator::getSexRatio()
 
 float Simulator::getAverageChildren()
 {
-    int total=0, single, n=0;
+    int total=0;
     for (int i=0;i<familyCount;i++)
     {
-        single=families[i]->countChildren();
-        if (single>0)
-        {
-            total+=single;
-            n++;
-        }
+        total+=families[i]->countChildren(true);
     }
-    if (n>0)
-        return float(total)/n;
+    if (familyCount>0)
+        return float(total)/familyCount;
     else
         return 0;
 }
