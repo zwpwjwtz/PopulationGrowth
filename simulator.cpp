@@ -174,8 +174,22 @@ int Simulator::countFreePeople()
     return freePeople->male + freePeople->female;
 }
 
+float Simulator::getSexRatio()
+{
+    int male=0,female=0;
+    Group* tempGroup;
+    for (int i=0;i<familyCount;i++)
+    {
+        tempGroup=families[i]->getGroup();
+        male+=tempGroup->male;
+        female+=tempGroup->female;
+        delete tempGroup;
+    }
+    return float(male)/female;
+}
+
 void Simulator::output(int generation)    //Print the current status
 {
-    if (generation==1)   cout<< "Gener." << "\tTotal" << "\tFamily" << "\t Free" << endl;
-    cout << generation << "\t" << countTotalPerson() << "\t" << countFamily() << "\t " << countFreePeople() << endl;
+    if (generation==1)   cout<< "Gener." << "\tTotal" << "\tFamily" << "\tFree" << "\tRatio" << endl;
+    cout << generation << "\t" << countTotalPerson() << "\t" << countFamily() << "\t" << countFreePeople() << "\t" << getSexRatio() << endl;
 }
