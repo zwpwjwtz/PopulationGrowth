@@ -162,7 +162,7 @@ int Simulator::countFamily()
 
 int Simulator::countTotalPerson()
 {
-    int count = 0;
+    int count = freePeople->male + freePeople->female;
     for (int i=0;i<familyCount;i++)
     {
         count+=families[i]->getPopulation();
@@ -189,8 +189,31 @@ float Simulator::getSexRatio()
     return float(male)/female;
 }
 
+float Simulator::getAverageChildren()
+{
+    int total=0, single, n=0;
+    for (int i=0;i<familyCount;i++)
+    {
+        single=families[i]->countChildren();
+        if (single>0)
+        {
+            total+=single;
+            n++;
+        }
+    }
+    if (n>0)
+        return float(total)/n;
+    else
+        return 0;
+}
+
 void Simulator::output(int generation)    //Print the current status
 {
-    if (generation==1)   cout<< "Gener." << "\tTotal" << "\tFamily" << "\tFree" << "\tRatio" << endl;
-    cout << generation << "\t" << countTotalPerson() << "\t" << countFamily() << "\t" << countFreePeople() << "\t" << getSexRatio() << endl;
+    if (generation==1)
+    {
+        cout<< "Gener." << "\tTotal" << "\tFamily" << "\tFree" << "\tRatio" << "\tAvg. Child"<< endl;
+        cout.setf(ios::fixed);
+        cout.precision(5);
+    }
+    cout << generation << "\t" << countTotalPerson() << "\t" << countFamily() << "\t" << countFreePeople() << "\t" << getSexRatio() << "\t" << getAverageChildren() << endl;
 }

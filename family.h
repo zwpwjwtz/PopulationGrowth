@@ -12,7 +12,7 @@ public:
     ~Family();
     
     void show_state();
-    int getPopulation();
+    int getPopulation(bool includeGrownUp=false);
     int countChildren();
     Group* getGroup();
     

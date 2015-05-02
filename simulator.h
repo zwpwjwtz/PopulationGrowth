@@ -38,6 +38,7 @@ public:
     int countTotalPerson();
     int countFreePeople();
     float getSexRatio();
+    float getAverageChildren();
     void output(int generation);
     
 private:

@@ -23,9 +23,12 @@ void Family::show_state()
     cout << "Father:" << father << " Mother: " << mother << " Population: " << population << endl;
 }
 
-int Family::getPopulation()
+int Family::getPopulation(bool includeGrownUp)
 {
-    return population;
+    if (includeGrownUp)
+        return population;
+    else
+        return population - lastGrownUp;
 }
 
 int Family::countChildren()
@@ -95,7 +98,7 @@ void Family::dead(bool isMale, bool isParent)
                     {
                         children[j]=children[j+1];
                     }
-                    if (i<=lastGrownUp && i>0) lastGrownUp--;   //Adjust pointer lastGrownUp
+                    if (i<lastGrownUp && i>0) lastGrownUp--;   //Adjust pointer lastGrownUp
                     childrenCount--;
                     population--;
                     break;
